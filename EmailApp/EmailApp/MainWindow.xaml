@@ -1,0 +1,28 @@
+﻿<Window x:Class="EmailApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmailApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="resultTextBox" Grid.Column="0" Margin="5" TextWrapping="Wrap" FontFamily="Consolas"/>
+        <StackPanel Grid.Column="1" Margin="5" >
+            <Button x:Name="readFileButton" Content="Inlezen" Margin="0 0 0 10" Height="30" Click="readFileButton_Click"/>
+            <Button x:Name="readDialogButton" Content="Inlezen / dialoogvenster"  Margin="0 0 0 10" Height="30" Click="readDialogButton_Click"/>
+            <Button x:Name="readDictionaryButton" Content="Inlezen / dictionary"  Margin="0 0 0 10" Height="30" Click="readDictionaryButton_Click"/>
+            <Button x:Name="writeButton" Content="Wegschrijven / dictionary"  Margin="0 0 0 10" Height="30" IsEnabled="False" Click="writeButton_Click"/>
+            <Button x:Name="addButton" Content="Toevoegen" Margin="0 0 0 10" Width="120" Height="40" Click="addButton_Click"/>
+            <TextBlock Height="19" Text="Naam" Margin="0 0 0 10" FontStyle="Italic" FontSize="14"/>
+            <TextBox x:Name="nameTextBox" Height="25" Margin="0 0 0 10" Text="John Doe"/>
+            <TextBlock Height="25" Text="E-mailadres" Margin="0 0 0 10" FontStyle="Italic" FontSize="14"/>
+            <TextBox x:Name="emailTextBox" Height="26" Margin="0 0 0 10" Text="john.doe@pxl.be"/>
+        </StackPanel>
+    </Grid>
+</Window>

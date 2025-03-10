@@ -22,3 +22,4 @@
 "Van Mulken Petra","vap@student.pxl.be"
 "Vekemans Sandra","vep@student.pxl.be"
 "Vrancken Isabelle","vri@student.pxl.be"
+"John Doe","john.doe@pxl.be"
