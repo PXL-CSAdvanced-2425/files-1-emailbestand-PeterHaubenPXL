@@ -20,6 +20,7 @@ namespace EmailApp;
 public partial class MainWindow : Window
 {
     string path = @"../../../../../email.txt";
+
     Dictionary<string, string> dictGeg = new Dictionary<string, string>();
 
     public MainWindow()
@@ -90,7 +91,7 @@ public partial class MainWindow : Window
     {
         StringBuilder sb = new StringBuilder();
 
-        string[] strArray = null; 
+        string[] strArray = null;
 
         using (StreamReader sr = new StreamReader(path))
         {
@@ -108,7 +109,7 @@ public partial class MainWindow : Window
                         dictGeg.Add(strArray[0], strArray[1]);
                     }
 
-                    foreach(var item in dictGeg)
+                    foreach (var item in dictGeg)
                     {
                         sb.AppendLine(item.Key + ": " + item.Value);
                     }
@@ -131,11 +132,11 @@ public partial class MainWindow : Window
 
     private void writeButton_Click(object sender, RoutedEventArgs e)
     {
-        if(dictGeg.Count >= 1)
+        if (dictGeg.Count >= 1)
         {
-            using(StreamWriter sw = new StreamWriter("Adressen.txt"))
+            using (StreamWriter sw = new StreamWriter("Adressen.txt"))
             {
-                foreach(var item in dictGeg)
+                foreach (var item in dictGeg)
                 {
                     sw.WriteLine(item.Value);
                 }
@@ -151,7 +152,7 @@ public partial class MainWindow : Window
     {
         if (string.IsNullOrWhiteSpace(nameTextBox.Text))
         {
-            MessageBox.Show("Naam mag niet leeg zijn","Ontbrekend data", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show("Naam mag niet leeg zijn", "Ontbrekend data", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
@@ -161,14 +162,31 @@ public partial class MainWindow : Window
             return;
         }
 
-        if(!File.Exists(path))
+        if (!File.Exists(path))
         {
             MessageBox.Show("File bestaat niet", "File ontbreekt", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
+        string ctrlEmail = emailTextBox.Text;
+        if (ctrlEmail.Contains('@') && ctrlEmail.Contains('.'))
+        {
+            if (!(ctrlEmail.LastIndexOf('.') > ctrlEmail.IndexOf('@')))
+            {
+                MessageBox.Show("Geen geldige e-mail ingegeven", "E-mail foutief", MessageBoxButton.OK, MessageBoxImage.Error);
+                emailTextBox.Focus();
+                return;
+            }
+        }
+        else
+        {
+            MessageBox.Show("Geen geldige e-mail ingegeven", "E-mail foutief", MessageBoxButton.OK, MessageBoxImage.Error);
+            emailTextBox.Focus();
+            return;
+        }
+
         SaveFileDialog sfd = new SaveFileDialog();
-        
+
         if (sfd.ShowDialog() == true)
         {
             path = sfd.FileName;
@@ -187,7 +205,7 @@ public partial class MainWindow : Window
                 }
             }
         }
-        
+
     }
 
 }
